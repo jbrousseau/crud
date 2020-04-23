@@ -283,7 +283,8 @@ export class TypeOrmCrudService<T> extends CrudService<T> {
 
       for (let i = 0; i < allowedJoins.length; i++) {
         /* istanbul ignore else */
-        if (joinOptions[allowedJoins[i]].eager) {
+        if (joinOptions[allowedJoins[i]].eager
+        || joinOptions[allowedJoins[i]].required) {
           const cond = parsed.join.find((j) => j && j.field === allowedJoins[i]) || {
             field: allowedJoins[i],
           };
